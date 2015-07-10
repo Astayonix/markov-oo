@@ -5,15 +5,16 @@ class SimpleMarkovGenerator(object):
     def read_files(self, filenames):
         """Given a list of files, make chains from them."""
 
-        # your code here
+        filenames = sys.argv[1]
+        input_text = open(filenames)
+        self.open_file = input_text
 
 
-    def make_chains(self, corpus):
+    def make_chains(self):
         """Takes input text as string; returns dictionary of markov chains."""
 
-        open_file = open(corpus)
         words = []
-        for line in open_file:
+        for line in self.open_file:
             words.extend(line.split())
         markov_dict = {}
 
@@ -47,17 +48,25 @@ class SimpleMarkovGenerator(object):
 
         return " ".join(markov_text_as_list)
 
-test1= SimpleMarkovGenerator()
+# test1= SimpleMarkovGenerator()
 
-test1.make_chains("green-eggs.txt")
+# test1.make_chains("green-eggs.txt")
 
-print test1.make_text()
+# print test1.make_text()
 
 if __name__ == "__main__":
 
     # we should get list of filenames from sys.argv
+    filenames = sys.argv[1]
+    print filenames
     # we should make an instance of the class
+    markov_inst = SimpleMarkovGenerator()
     # we should call the read_files method with the list of filenames
+    markov_inst.read_files(filenames)
     # we should call the make_text method 5x
-
-    pass
+    markov_inst.make_chains()
+    print markov_inst.make_text()
+    print markov_inst.make_text()
+    print markov_inst.make_text()
+    print markov_inst.make_text()
+    print markov_inst.make_text()
